@@ -1,0 +1,18 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - tests/PHPat
+    tmpDir: var/phpstan
+    phpat:
+        ignore_built_in_classes: true
+        show_rule_names: true
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+services:
+    -
+        class: Tests\PHPat\ArchitectureTest
+        tags:
+            - phpat.test
+

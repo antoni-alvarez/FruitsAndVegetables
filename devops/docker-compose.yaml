@@ -1,0 +1,30 @@
+networks:
+  playground:
+    external: false
+
+services:
+  reverse-proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: reverse-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      - playground
+
+  playground:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: playground
+    environment:
+      - VIRTUAL_HOST=playground.localhost
+    volumes:
+      - ../app:/var/www
+    expose:
+      - "80"
+    ports:
+      - "9003:9003"
+    networks:
+      - playground
