@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Application\Service;
+
+use App\Domain\DTO\FoodDTO;
+
+use function array_map;
+
+/**
+ * @phpstan-import-type FoodRawData from FoodParser
+ * @phpstan-import-type FoodItem from FoodParser
+ */
+class FoodMapper
+{
+    public function __construct() {}
+
+    /**
+     * @param array<int, FoodItem> $data
+     *
+     * @return array<int, FoodDTO>
+     */
+    public function mapArray(array $data): array
+    {
+        return array_map(fn ($item): FoodDTO => $this->mapItem($item), $data);
+    }
+
+    /**
+     * @param FoodItem $item
+     */
+    public function mapItem(array $item): FoodDTO
+    {
+        return new FoodDTO(
+            $item['id'],
+            $item['name'],
+            $item['type'],
+            $item['quantity'],
+            $item['unit'],
+        );
+    }
+}

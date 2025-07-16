@@ -19,6 +19,14 @@ Once started, the project will be accessible at:
 http://playground.localhost
 ```
 
+## 🥫 Importing data
+
+You can import food items from the JSON file using this command:
+
+```bash
+bin/console app:import assets/data/request.json
+```
+
 ## ✅ Running tests
 
 ```bash
