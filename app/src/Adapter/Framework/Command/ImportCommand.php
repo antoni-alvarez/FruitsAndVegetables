@@ -17,7 +17,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Throwable;
 
+use function array_map;
 use function is_string;
+use function sprintf;
 
 #[AsCommand(
     name: 'app:import',
@@ -64,10 +66,10 @@ class ImportCommand extends Command
         $vegetables = $this->vegetableRepository->list();
 
         $io->section('🍎 Fruits imported:');
-        $io->listing(array_map(fn($f) => sprintf('%d. %s', $f->id, $f->name), $fruits));
+        $io->listing(array_map(fn ($f) => sprintf('%d. %s', $f->id, $f->name), $fruits));
 
         $io->section('🥕 Vegetables imported:');
-        $io->listing(array_map(fn($v) => sprintf('%d. %s', $v->id, $v->name), $vegetables));
+        $io->listing(array_map(fn ($v) => sprintf('%d. %s', $v->id, $v->name), $vegetables));
 
         $io->success('Food import process finished successfully.');
         $this->logger->info('Food import process finished successfully.');
