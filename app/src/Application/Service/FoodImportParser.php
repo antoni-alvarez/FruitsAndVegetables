@@ -22,7 +22,7 @@ use function sprintf;
  * }
  * @phpstan-type FoodRawData array<int, FoodItem>
  */
-class FoodParser
+class FoodImportParser
 {
     /**
      * @return FoodRawData

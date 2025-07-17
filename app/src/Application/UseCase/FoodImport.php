@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase;
 
-use App\Application\Service\FoodMapper;
-use App\Application\Service\FoodParser;
+use App\Application\Service\FoodImportMapper;
+use App\Application\Service\FoodImportParser;
 use App\Application\Service\FoodRepositoryProvider;
 use App\Domain\Entity\Food;
 use Psr\Log\LoggerInterface;
@@ -15,8 +15,8 @@ use function sprintf;
 readonly class FoodImport
 {
     public function __construct(
-        private FoodParser $foodParser,
-        private FoodMapper $foodMapper,
+        private FoodImportParser $foodParser,
+        private FoodImportMapper $foodMapper,
         private FoodRepositoryProvider $foodRepositoryProvider,
         private LoggerInterface $logger,
     ) {}
@@ -27,7 +27,7 @@ readonly class FoodImport
         $foodItems = $this->foodMapper->mapArray($rawData);
 
         foreach ($foodItems as $foodItem) {
-            $food = new Food($foodItem->id, $foodItem->name, $foodItem->type, $foodItem->quantity);
+            $food = new Food($foodItem->id, $foodItem->name, $foodItem->quantity);
 
             $this->logger->info(sprintf('Food item added: %s', $food->name));
 

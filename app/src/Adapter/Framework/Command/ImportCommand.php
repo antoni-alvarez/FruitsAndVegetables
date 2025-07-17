@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Adapter\Framework\Command;
 
-use App\Adapter\Framework\Persistence\InMemoryFruitRepository;
-use App\Adapter\Framework\Persistence\InMemoryVegetableRepository;
+use App\Adapter\Framework\Persistence\LocalStorageFruitRepository;
+use App\Adapter\Framework\Persistence\LocalStorageVegetableRepository;
 use App\Application\UseCase\FoodImport;
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
@@ -30,8 +30,8 @@ class ImportCommand extends Command
     public function __construct(
         private readonly FoodImport $foodImport,
         private readonly LoggerInterface $logger,
-        private readonly InMemoryFruitRepository $fruitRepository,
-        private readonly InMemoryVegetableRepository $vegetableRepository,
+        private readonly LocalStorageFruitRepository $fruitRepository,
+        private readonly LocalStorageVegetableRepository $vegetableRepository,
     ) {
         parent::__construct();
     }

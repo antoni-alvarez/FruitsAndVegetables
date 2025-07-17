@@ -6,6 +6,10 @@ services:
     App\Adapter\Framework\Command\:
         resource: '%kernel.project_dir%/src/Adapter/Framework/Command/*'
 
+    App\Adapter\Framework\Http\Controller\:
+        resource: '%kernel.project_dir%/src/Adapter/Framework/Http/Controller/*'
+        tags: [ 'controller.service_arguments' ]
+
     App\Adapter\Framework\Persistence\:
         resource: '%kernel.project_dir%/src/Adapter/Framework/Persistence/*'
 
@@ -17,5 +21,13 @@ services:
 
     App\Application\Service\FoodRepositoryProvider:
         arguments:
-            $fruitRepository: '@App\Adapter\Framework\Persistence\InMemoryFruitRepository'
-            $vegetableRepository: '@App\Adapter\Framework\Persistence\InMemoryVegetableRepository'
+            $fruitRepository: '@App\Adapter\Framework\Persistence\LocalStorageFruitRepository'
+            $vegetableRepository: '@App\Adapter\Framework\Persistence\LocalStorageVegetableRepository'
+
+    App\Adapter\Framework\Persistence\LocalStorageFruitRepository:
+        arguments:
+            $filePath: '%kernel.project_dir%/var/fruits.json'
+
+    App\Adapter\Framework\Persistence\LocalStorageVegetableRepository:
+        arguments:
+            $filePath: '%kernel.project_dir%/var/vegetables.json'

@@ -9,10 +9,10 @@ use App\Domain\DTO\FoodDTO;
 use function array_map;
 
 /**
- * @phpstan-import-type FoodRawData from FoodParser
- * @phpstan-import-type FoodItem from FoodParser
+ * @phpstan-import-type FoodRawData from FoodImportParser
+ * @phpstan-import-type FoodItem from FoodImportParser
  */
-class FoodMapper
+class FoodImportMapper
 {
     public function __construct() {}
 
