@@ -9,7 +9,7 @@ use App\Domain\Entity\Food;
 use function array_map;
 use function round;
 
-final readonly class FoodUnitConverter
+final readonly class FoodUnitNormalizer
 {
     /**
      * @param list<Food> $foodItems
