@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Service;
 
+use App\Domain\DTO\FoodDTO;
 use App\Domain\Entity\Food;
 
 use function array_map;
@@ -14,22 +15,20 @@ final readonly class FoodUnitNormalizer
     /**
      * @param list<Food> $foodItems
      *
-     * @return list<array{
-     *     id: int,
-     *     name: string,
-     *     type: string,
-     *     quantity: float,
-     *     unit: string
-     *  }>
+     * @return list<FoodDTO>
      */
     public function convertToKilograms(array $foodItems): array
     {
-        return array_map(fn (Food $food) => [
-            'id' => $food->id,
-            'name' => $food->name,
-            'type' => $food->type,
-            'quantity' => round($food->quantity / 1000),
-            'unit' => 'kg',
-        ], $foodItems);
+        return array_map(function (Food $food): FoodDTO {
+            $quantity = $food->unit === 'g' ? (int) round($food->quantity / 1000) : $food->quantity;
+
+            return new FoodDTO(
+                $food->id,
+                $food->name,
+                $food->type,
+                $quantity,
+                'kg',
+            );
+        }, $foodItems);
     }
 }

@@ -17,9 +17,6 @@ final readonly class FoodAdd
         private LoggerInterface $logger,
     ) {}
 
-    /**
-     * @return array<int, Food>
-     */
     public function execute(
         int $id,
         string $name,

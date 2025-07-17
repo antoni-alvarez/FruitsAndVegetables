@@ -13,7 +13,7 @@ interface FoodRepositoryInterface
     public function remove(string $name): void;
 
     /**
-     * @return array<int, Food>
+     * @return list<Food>
      */
     public function list(): array;
 

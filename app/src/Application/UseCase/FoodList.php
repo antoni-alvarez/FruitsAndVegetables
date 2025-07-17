@@ -6,6 +6,7 @@ namespace App\Application\UseCase;
 
 use App\Application\Service\FoodFetcher;
 use App\Application\Service\FoodUnitNormalizer;
+use App\Domain\DTO\FoodDTO;
 use App\Domain\Entity\Food;
 use Psr\Log\LoggerInterface;
 
@@ -21,7 +22,7 @@ final readonly class FoodList
     ) {}
 
     /**
-     * @return array<int, Food>
+     * @return list<Food|FoodDTO>
      */
     public function execute(?string $type, ?string $unit): array
     {

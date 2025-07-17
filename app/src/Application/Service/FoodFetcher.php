@@ -15,7 +15,7 @@ final readonly class FoodFetcher
     ) {}
 
     /**
-     * @return array<int, Food>
+     * @return list<Food>
      */
     public function fetch(?string $type): array
     {
