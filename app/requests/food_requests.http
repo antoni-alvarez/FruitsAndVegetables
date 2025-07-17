@@ -1,0 +1,33 @@
+### List all food elements
+GET http://localhost:8080/food
+
+### List food elements with type fruit
+GET http://localhost:8080/food?type=fruit
+
+### List food elements with type vegetable and unit in kg
+GET http://localhost:8080/food?type=vegetable&unit=kg
+
+
+### Add food element (kg)
+POST http://localhost:8080/food
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Mango",
+    "type": "fruit",
+    "quantity": 1,
+    "unit": "kg"
+}
+
+### Add food element (g)
+POST http://localhost:8080/food
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Spinach",
+    "type": "vegetable",
+    "quantity": 350,
+    "unit": "g"
+}
