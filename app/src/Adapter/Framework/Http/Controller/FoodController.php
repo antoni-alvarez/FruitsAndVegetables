@@ -4,28 +4,30 @@ declare(strict_types=1);
 
 namespace App\Adapter\Framework\Http\Controller;
 
-use App\Application\Service\FoodRepositoryProvider;
+use App\Adapter\Framework\Http\Request\FoodFilterRequestDTO;
+use App\Application\Service\FoodFetcher;
+use App\Application\Service\FoodUnitConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
 
-use function array_merge;
-
-class FoodController extends AbstractController
+final class FoodController extends AbstractController
 {
     public function __construct(
-        private readonly FoodRepositoryProvider $repositoryProvider,
+        private readonly FoodFetcher $foodFetcher,
+        private readonly FoodUnitConverter $foodUnitConverter,
     ) {}
 
     #[Route('/food', name: 'List food')]
-    public function getFood(): Response
+    public function listFood(#[MapQueryString] FoodFilterRequestDTO $requestDTO): Response
     {
-        $fruitRepository = $this->repositoryProvider->forType('fruit');
-        $vegetablesRepository = $this->repositoryProvider->forType('vegetable');
+        $foodItems = $this->foodFetcher->fetch($requestDTO->type);
 
-        $fruits = $fruitRepository->list();
-        $vegetables = $vegetablesRepository->list();
+        if ($requestDTO->unit === 'kg') {
+            $foodItems = $this->foodUnitConverter->convertToKilograms($foodItems);
+        }
 
-        return $this->json(array_merge($fruits, $vegetables));
+        return $this->json($foodItems);
     }
 }
