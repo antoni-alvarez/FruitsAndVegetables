@@ -16,7 +16,7 @@ use function sprintf;
 
 use const JSON_PRETTY_PRINT;
 
-class FoodStorageFileHandler
+final readonly class FoodStorageFileHandler
 {
     /**
      * @return array<mixed>

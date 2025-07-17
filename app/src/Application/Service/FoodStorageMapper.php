@@ -8,7 +8,7 @@ use App\Domain\Entity\Food;
 
 use function array_map;
 
-class FoodStorageMapper
+final readonly class FoodStorageMapper
 {
     /**
      * @param array<string, array<string, string|int>> $rawFoodItems

@@ -10,11 +10,11 @@ use InvalidArgumentException;
 use function mb_strtolower;
 use function sprintf;
 
-class FoodRepositoryProvider
+final readonly class FoodRepositoryProvider
 {
     public function __construct(
-        private readonly FoodRepositoryInterface $fruitRepository,
-        private readonly FoodRepositoryInterface $vegetableRepository,
+        private FoodRepositoryInterface $fruitRepository,
+        private FoodRepositoryInterface $vegetableRepository,
     ) {}
 
     public function forType(string $type): FoodRepositoryInterface
