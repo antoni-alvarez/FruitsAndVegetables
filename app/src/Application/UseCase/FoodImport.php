@@ -12,7 +12,7 @@ use Psr\Log\LoggerInterface;
 
 use function sprintf;
 
-readonly class FoodImport
+final readonly class FoodImport
 {
     public function __construct(
         private FoodImportParser $foodParser,

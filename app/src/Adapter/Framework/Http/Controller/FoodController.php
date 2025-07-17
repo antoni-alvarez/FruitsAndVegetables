@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Adapter\Framework\Http\Controller;
 
+use App\Adapter\Framework\Http\Request\FoodCreateRequestDTO;
 use App\Adapter\Framework\Http\Request\FoodFilterRequestDTO;
 use App\Application\UseCase\FoodAdd;
 use App\Application\UseCase\FoodList;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryString;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
 use Throwable;
 

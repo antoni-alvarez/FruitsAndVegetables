@@ -30,11 +30,9 @@ final readonly class FoodImportMapper
     public function mapItem(array $item): FoodDTO
     {
         $quantity = $item['quantity'];
-        $unit = $item['unit'];
 
-        if ($unit === 'kg') {
+        if ($item['unit'] === 'kg') {
             $quantity = $quantity * 1000;
-            $unit = 'g';
         }
 
         return new FoodDTO(
@@ -42,7 +40,7 @@ final readonly class FoodImportMapper
             $item['name'],
             $item['type'],
             $quantity,
-            $unit,
+            'g',
         );
     }
 }
