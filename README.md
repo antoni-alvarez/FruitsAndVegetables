@@ -16,7 +16,7 @@ make start
 Once started, the project will be accessible at:
 
 ```
-http://playground.localhost
+http://localhost:8080
 ```
 
 ## 📥 Importing data
