@@ -46,7 +46,9 @@ class FoodStorageFileHandler
      * @param array<string, array{
      *      id: int,
      *      name: string,
-     *      weight: int
+     *      type: string,
+     *      quantity: int,
+     *      unit: string
      *   }> $data
      */
     public function write(string $filePath, array $data): void

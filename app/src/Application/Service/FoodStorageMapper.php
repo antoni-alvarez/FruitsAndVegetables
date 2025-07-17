@@ -20,7 +20,9 @@ class FoodStorageMapper
         return array_map(fn ($foodItem) => new Food(
             (int) $foodItem['id'],
             (string) $foodItem['name'],
-            (int) $foodItem['weight'],
+            (string) $foodItem['type'],
+            (int) $foodItem['quantity'],
+            (string) $foodItem['unit'],
         ), $rawFoodItems);
     }
 
@@ -30,7 +32,9 @@ class FoodStorageMapper
      * @return array<string, array{
      *     id: int,
      *     name: string,
-     *     weight: int
+     *     type: string,
+     *     quantity: int,
+     *     unit: string
      *  }>
      */
     public function serialize(array $items): array
@@ -41,7 +45,9 @@ class FoodStorageMapper
             $result[$name] = [
                 'id' => $food->id,
                 'name' => $food->name,
-                'weight' => $food->weight,
+                'type' => $food->type,
+                'quantity' => $food->quantity,
+                'unit' => $food->unit,
             ];
         }
 

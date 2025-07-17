@@ -24,14 +24,14 @@ readonly class FoodImport
     public function execute(string $filePath): void
     {
         $rawData = $this->foodParser->parse($filePath);
-        $foodItems = $this->foodMapper->mapArray($rawData);
+        $foodDTOS = $this->foodMapper->mapArray($rawData);
 
-        foreach ($foodItems as $foodItem) {
-            $food = new Food($foodItem->id, $foodItem->name, $foodItem->quantity);
+        foreach ($foodDTOS as $foodDTO) {
+            $food = new Food($foodDTO->id, $foodDTO->name, $foodDTO->type, $foodDTO->quantity, $foodDTO->unit);
 
             $this->logger->info(sprintf('Food item added: %s', $food->name));
 
-            $this->foodRepositoryProvider->forType($foodItem->type)->add($food);
+            $this->foodRepositoryProvider->forType($foodDTO->type)->add($food);
         }
     }
 }
