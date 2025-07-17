@@ -12,7 +12,7 @@ use function array_map;
  * @phpstan-import-type FoodRawData from FoodImportParser
  * @phpstan-import-type FoodItem from FoodImportParser
  */
-final readonly class FoodImportMapper
+readonly class FoodImportMapper
 {
     /**
      * @param array<int, FoodItem> $data

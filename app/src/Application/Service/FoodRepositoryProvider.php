@@ -10,7 +10,7 @@ use InvalidArgumentException;
 use function mb_strtolower;
 use function sprintf;
 
-final readonly class FoodRepositoryProvider
+readonly class FoodRepositoryProvider
 {
     public function __construct(
         private FoodRepositoryInterface $fruitRepository,

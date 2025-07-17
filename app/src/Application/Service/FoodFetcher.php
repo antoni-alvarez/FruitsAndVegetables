@@ -8,7 +8,7 @@ use App\Domain\Entity\Food;
 
 use function array_merge;
 
-final readonly class FoodFetcher
+readonly class FoodFetcher
 {
     public function __construct(
         private FoodRepositoryProvider $repositoryProvider,
