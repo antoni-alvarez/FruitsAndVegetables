@@ -9,12 +9,12 @@
 
 ###> phpunit/phpunit ###
 /phpunit.xml
+/tests/.phpunit.cache/
 /.phpunit.cache/
 ###< phpunit/phpunit ###
 
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
-/phpunit.xml
 ###< symfony/phpunit-bridge ###
 
 ###> php-cs-fixer/shim ###
