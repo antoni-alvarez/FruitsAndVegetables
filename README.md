@@ -19,7 +19,7 @@ Once started, the project will be accessible at:
 http://playground.localhost
 ```
 
-## 🥫 Importing data
+## 📥 Importing data
 
 You can import food items from the JSON file using this command:
 
@@ -27,7 +27,42 @@ You can import food items from the JSON file using this command:
 bin/console app:import assets/data/request.json
 ```
 
-## ✅ Running tests
+## 🔗 API Endpoints
+
+#### `GET /food`
+
+Returns all food items. Optional query params filters:
+
+- `type`: `"fruit"`, `"vegetable"`, or omitted to list all
+- `unit`: `"g"` (default) or `"kg"`
+
+---
+
+#### `POST /food`
+
+Adds a new food item.
+
+**Request body example in JSON format:**
+
+```json
+{
+  "id": 21,
+  "name": "Mango",
+  "type": "fruit",
+  "quantity": 2,
+  "unit": "kg"
+}
+```
+
+### API Requests
+
+You can find example requests for the endpoints in the following file:
+
+```
+app/requests/food_requests.http
+```
+
+## 🧪 Running tests
 
 ```bash
 make test
